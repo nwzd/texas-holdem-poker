@@ -27,7 +27,7 @@ public class App {
 
 		Collections.sort(showdowns);
 		StringBuilder printer = new StringBuilder();
-		printer.append(board.getCards()).append(" ");
+//		printer.append(board.getCards()).append(" ");
 		printer.append(showdowns.get(0).getHand().getCards());
 		for (int i = 1; i < showdowns.size(); i++) {
 
