@@ -12,3 +12,7 @@ output of the program will be `Ad4s=Ac4d 5d6d As9s KhKd`
 
 #### Execute some examples
 `java -jar target/poker-hands-0.0.1-SNAPSHOT.jar 4cKs4h8s7s Ad4s Ac4d As9s KhKd 5d6d`
+
+## Known Bugs
+1. Comparing A2345 to 34567
+2. Regex for input format. Should throw exception if arguments does not follow the format.
