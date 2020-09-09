@@ -10,7 +10,6 @@ public class Rank {
 
 	private static final int INCREMENT = 15;
 	private Showdown showdown;
-	private Integer rank;
 
 	public Rank(Showdown showdown) {
 		this.showdown = showdown;
@@ -20,7 +19,11 @@ public class Rank {
 		Integer rank = 0;
 		Map<String, List<Integer>> straight = showdown.getStraight();
 		if (straight.size() == 1 && straight.values().iterator().next().size() == 5) {
-			rank = Collections.max(straight.values().iterator().next()) + 5 * INCREMENT;
+			List<Integer> next = straight.values().iterator().next();
+			if (Collections.min(next) == 2 && Collections.max(next) == 14) {
+				rank = 5 + 4 * INCREMENT;
+			}
+			rank = Collections.max(next) + 5 * INCREMENT;
 		}
 		// System.out.println("rankStraight: " + rank);
 		return rank;
@@ -128,11 +131,15 @@ public class Rank {
 	public Integer rankStraightFlush() {
 		Integer rank = 0;
 		Map<String, List<Integer>> straight = showdown.getStraight();
-		if (straight.size() == 1 && straight.values().size() == 5 && showdown.getFlush().size() == 1
-				&& showdown.getFlush().values().size() == 5) {
+		if (straight.size() == 1 && straight.values().iterator().next().size() == 5 && showdown.getFlush().size() == 1
+				&& showdown.getFlush().values().iterator().next().size() == 5) {
+			List<Integer> next = straight.values().iterator().next();
+			if (Collections.min(next) == 2 && Collections.max(next) == 14) {
+				rank = 5 + 9 * INCREMENT;
+			}
 			rank = Collections.max(straight.values().iterator().next()) + 9 * INCREMENT;
 		}
-		// System.out.println("rankStraightFlush: " + rank);
+//		 System.out.println("rankStraightFlush: " + rank);
 		return rank;
 	}
 
