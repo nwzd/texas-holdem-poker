@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 
 import com.demo.poker.constant.Royal;
 
-public class Showdown implements Comparable<Showdown>{
+public class Showdown implements Comparable<Showdown> {
 	private static final String REGEX_SDCH = "(?<=[sdch])";
 	private static final String REGEX_DIGIT_CHAR = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 	private Hand hand;
@@ -40,7 +40,8 @@ public class Showdown implements Comparable<Showdown>{
 		this.hand = hand;
 		this.board = board;
 		String allCards = this.hand.getCards().concat(board.getCards()).replace(Royal.A.name(), "14")
-				.replace(Royal.K.name(), "13").replace(Royal.Q.name(), "12").replace(Royal.J.name(), "11");
+				.replace(Royal.K.name(), "13").replace(Royal.Q.name(), "12").replace(Royal.J.name(), "11")
+				.replace(Royal.T.name(), "10");
 		init(allCards.split(REGEX_SDCH));
 	}
 
@@ -66,8 +67,8 @@ public class Showdown implements Comparable<Showdown>{
 		for (Entry<String, List<Integer>> entry : suitMap.entrySet()) {
 			Collections.sort(entry.getValue());
 		}
-		//System.out.println("valueMap: " + valueMap);
-		//System.out.println("suitMap: " + suitMap);
+		// System.out.println("valueMap: " + valueMap);
+		// System.out.println("suitMap: " + suitMap);
 
 		cards = valueMap;
 		ofAKind = getOfAKind(valueMap);
@@ -83,7 +84,7 @@ public class Showdown implements Comparable<Showdown>{
 				ofAKind.put(entry.getKey(), entry.getValue());
 			}
 		}
-		//System.out.println("ofAKind: " + ofAKind);
+		// System.out.println("ofAKind: " + ofAKind);
 		return ofAKind;
 	}
 
@@ -105,7 +106,7 @@ public class Showdown implements Comparable<Showdown>{
 
 		}
 
-		//System.out.println("straight: " + straight);
+		// System.out.println("straight: " + straight);
 		return straight;
 	}
 
